@@ -2,18 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.krohm.tagcontainer;
+package org.krohm.tagcontainer.account;
 
-import com.sun.net.httpserver.Filter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.krohm.tagcontainer.entities.ScriptEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,17 +26,20 @@ import org.slf4j.LoggerFactory;
  *
  * @author Arnaud
  */
-public class GetJavascriptServlet extends HttpServlet {
+public abstract class AbstractGetAccountJavascriptServlet extends HttpServlet {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GetJavascriptServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGetAccountJavascriptServlet.class);
     private static ScriptEntity testScript;
+    private static final Template accountJavascriptTemplate = getVelocityTemplate();
+
+    abstract protected List<String> getTestUrlList(HttpServletRequest request);
 
     public ScriptEntity getTestScript() {
         return testScript;
     }
 
     public void setTestScript(ScriptEntity testScript) {
-        GetJavascriptServlet.testScript = testScript;
+        AbstractGetAccountJavascriptServlet.testScript = testScript;
     }
 
     /**
@@ -51,9 +58,16 @@ public class GetJavascriptServlet extends HttpServlet {
         setResponseHeaders(response);
         PrintWriter out = response.getWriter();
         try {
+
+            VelocityContext context = getVelocityContect(request);
+            /* now render the template into a StringWriter */
+            StringWriter writer = new StringWriter();
+            accountJavascriptTemplate.merge(context, writer);
+            /* show the World */
+            out.println(writer.toString());
             /* TODO output your page here. You may use following sample code. */
             //out.println("alert('test');");
-            out.println(testScript.getContent());
+            //  out.println(testScript.getContent());
         } finally {
             out.close();
         }
@@ -70,7 +84,7 @@ public class GetJavascriptServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    final protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -85,7 +99,7 @@ public class GetJavascriptServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    final protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -107,4 +121,21 @@ public class GetJavascriptServlet extends HttpServlet {
 
     }
 
+    private static Template getVelocityTemplate() {
+        VelocityEngine ve = new VelocityEngine();
+        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        ve.init();
+
+        Template template = ve.getTemplate("getAccountJavascript.tpl");
+        return template;
+    }
+
+    private VelocityContext getVelocityContect(HttpServletRequest request) {
+        VelocityContext context = new VelocityContext();
+        List<String> urlsToInclude = new ArrayList<String>();
+        urlsToInclude.addAll(getTestUrlList(request));
+        context.put("urlsToInclude", urlsToInclude);
+        return context;
+    }
 }

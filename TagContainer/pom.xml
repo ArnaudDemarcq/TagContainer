@@ -78,11 +78,11 @@
             <artifactId>wicket-auth-roles</artifactId>
             <version>${wicket.version}</version>
         </dependency>
-		<dependency>
-	<groupId>org.apache.wicket</groupId>
-	<artifactId>wicket-datetime</artifactId>
-	<version>6.0.0</version>
-</dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-datetime</artifactId>
+            <version>6.0.0</version>
+        </dependency>
             
         <!-- DA SPRING -->
         <dependency>
@@ -142,8 +142,7 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
-        </dependency>
-        
+        </dependency>        
         <!-- For Access to transact Database -->
         <dependency>
             <groupId>c3p0</groupId>
@@ -156,6 +155,13 @@
             <version>2.4</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Velocity -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+            
     </dependencies>
     <repositories>
         <!-- SPRING Repositories -->

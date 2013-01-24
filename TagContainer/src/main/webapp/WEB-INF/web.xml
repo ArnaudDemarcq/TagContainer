@@ -20,7 +20,7 @@
         <!-- 
             classpath:springProcessDefinition.xml -->
     </context-param>
-            <listener>
+    <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
     <listener>
@@ -35,9 +35,15 @@
         <servlet-name>GetJavascriptServlet</servlet-name>
         <url-pattern>/GetJavascript/*</url-pattern>
     </servlet-mapping>
-    
-
-    
+    <!-- GetAccountJavascriptServlet -->
+    <servlet>
+        <servlet-name>GetAccountJavascriptServlet</servlet-name>
+        <servlet-class>org.krohm.tagcontainer.account.TestGetAccountJavascriptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAccountJavascriptServlet</servlet-name>
+        <url-pattern>/GetAccountJavascript/*</url-pattern>
+    </servlet-mapping>
     <!--            classpath:springJdbc.xml
     classpath:springSecuritySettings.xml-->
     <!--  Spring Security  
@@ -71,5 +77,4 @@
     <!-- Other Spring stuff 
 
     -->
-
 </web-app>
