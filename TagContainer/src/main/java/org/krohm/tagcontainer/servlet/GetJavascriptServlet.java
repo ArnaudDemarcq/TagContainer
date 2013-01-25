@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.krohm.tagcontainer;
+package org.krohm.tagcontainer.servlet;
 
 import com.sun.net.httpserver.Filter;
 import java.io.IOException;

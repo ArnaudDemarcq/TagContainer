@@ -29,7 +29,7 @@
     <!-- GetJavascriptServlet -->
     <servlet>
         <servlet-name>GetJavascriptServlet</servlet-name>
-        <servlet-class>org.krohm.tagcontainer.GetJavascriptServlet</servlet-class>
+        <servlet-class>org.krohm.tagcontainer.servlet.GetJavascriptServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetJavascriptServlet</servlet-name>
@@ -38,7 +38,7 @@
     <!-- GetAccountJavascriptServlet -->
     <servlet>
         <servlet-name>GetAccountJavascriptServlet</servlet-name>
-        <servlet-class>org.krohm.tagcontainer.account.TestGetAccountJavascriptServlet</servlet-class>
+        <servlet-class>org.krohm.tagcontainer.servlet.account.TestGetAccountJavascriptServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetAccountJavascriptServlet</servlet-name>

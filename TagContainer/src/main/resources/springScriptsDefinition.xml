@@ -18,7 +18,7 @@
        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        ">
 
-    <bean class="org.krohm.tagcontainer.GetJavascriptServlet" name="testServlet" >
+    <bean class="org.krohm.tagcontainer.servlet.GetJavascriptServlet" name="testServlet" >
         <property name="testScript">
             <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
                 <property name="content">
