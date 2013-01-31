@@ -16,7 +16,7 @@ public final class Util {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Util.class);
 
-    public final static String getAccountId(HttpServletRequest request) {
+    public static String getAccountId(HttpServletRequest request) {
         String uriString = request.getRequestURI();
         String remainingString = null;
         try {
@@ -28,7 +28,7 @@ public final class Util {
         }
     }
 
-    public final static String getScriptId(HttpServletRequest request) {
+    public static String getScriptId(HttpServletRequest request) {
         return getAccountId(request);
     }
 }

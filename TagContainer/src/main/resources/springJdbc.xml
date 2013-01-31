@@ -17,7 +17,7 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        ">
-    <!-- Data Source  
+    <!-- Data Source  -->
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -25,28 +25,27 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
--->
 
-    <!-- C3PO Data Source  -->
-    <bean id="transactDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-        destroy-method="close">
-        <property name="driverClass" value="${jdbc.driverClassName}"/>
-        <property name="jdbcUrl" value="${jdbc.url}"/><!--
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/> -->
-        <property name="properties">
-            <props>
-                <prop key="c3p0.acquire_increment">5</prop>
-                <prop key="c3p0.idle_test_period">100</prop>
-                <prop key="c3p0.max_size">100</prop>
-                <prop key="c3p0.max_statements">0</prop>
-                <prop key="c3p0.min_size">10</prop>
-                <prop key="user">${jdbc.username}</prop>
-                <prop key="password">${jdbc.password}</prop>
-                <prop key="c3p0.timeout">60</prop> <!-- seconds -->
-            </props>
+    <!-- Entity Manager Factory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="${application.database.database}"/>
+                <property name="databasePlatform" value="${hibernate.dialect}"/>
+                <property name="showSql" value="${application.database.showSql}"/>
+                <property name="generateDdl" value="${application.database.generateDdl}"/>
+            </bean>
         </property>
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
     </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- TODO : DAOs -->
 
 
 </beans>

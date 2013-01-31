@@ -37,7 +37,7 @@
                 <!-- system then defaults -->
                 <value>classpath:default.properties</value>
                 <value>file:${application.properties}</value>
-                <value>file:${remotefa.application.properties}</value>
+                <value>file:${tagcontainer.application.properties}</value>
             </list>
         </property>
     </bean>
