@@ -19,6 +19,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.krohm.tagcontainer.entities.ScriptEntity;
+import org.krohm.tagcontainer.servlet.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,18 +30,9 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractGetAccountJavascriptServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGetAccountJavascriptServlet.class);
-    private static ScriptEntity testScript;
     private static final Template accountJavascriptTemplate = getVelocityTemplate();
 
-    abstract protected List<String> getTestUrlList(HttpServletRequest request);
-
-    public ScriptEntity getTestScript() {
-        return testScript;
-    }
-
-    public void setTestScript(ScriptEntity testScript) {
-        AbstractGetAccountJavascriptServlet.testScript = testScript;
-    }
+    abstract protected List<String> getUrlList(HttpServletRequest request);
 
     /**
      * Processes requests for both HTTP
@@ -134,8 +126,11 @@ public abstract class AbstractGetAccountJavascriptServlet extends HttpServlet {
     private VelocityContext getVelocityContect(HttpServletRequest request) {
         VelocityContext context = new VelocityContext();
         List<String> urlsToInclude = new ArrayList<String>();
-        urlsToInclude.addAll(getTestUrlList(request));
+        urlsToInclude.addAll(getUrlList(request));
         context.put("urlsToInclude", urlsToInclude);
+        context.put("ACCOUNT_ID", Util.getAccountId(request));
         return context;
     }
+
+  
 }

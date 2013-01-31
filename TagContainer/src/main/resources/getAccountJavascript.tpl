@@ -1,6 +1,6 @@
 // alert('test from velocity template (${name})');
 
-function $!{ACCOUNT_ID}_loadScript(url, callback)
+function account_$!{ACCOUNT_ID}_loadScript(url, callback)
 {
     // adding the script tag to the head as suggested before
    var head = document.getElementsByTagName('head')[0];
@@ -18,5 +18,5 @@ function $!{ACCOUNT_ID}_loadScript(url, callback)
 }
 
 #foreach( $currentUrl in $urlsToInclude ) 
-    $!{ACCOUNT_ID}_loadScript("$currentUrl", function(){});
+    account_$!{ACCOUNT_ID}_loadScript("$currentUrl", function(){});
 #end
