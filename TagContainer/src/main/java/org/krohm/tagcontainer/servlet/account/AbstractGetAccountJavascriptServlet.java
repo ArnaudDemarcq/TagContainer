@@ -18,7 +18,6 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.krohm.tagcontainer.entities.ScriptEntity;
 import org.krohm.tagcontainer.servlet.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,16 +49,10 @@ public abstract class AbstractGetAccountJavascriptServlet extends HttpServlet {
         setResponseHeaders(response);
         PrintWriter out = response.getWriter();
         try {
-
             VelocityContext context = getVelocityContect(request);
-            /* now render the template into a StringWriter */
             StringWriter writer = new StringWriter();
             accountJavascriptTemplate.merge(context, writer);
-            /* show the World */
             out.println(writer.toString());
-            /* TODO output your page here. You may use following sample code. */
-            //out.println("alert('test');");
-            //  out.println(testScript.getContent());
         } finally {
             out.close();
         }
@@ -131,6 +124,4 @@ public abstract class AbstractGetAccountJavascriptServlet extends HttpServlet {
         context.put("ACCOUNT_ID", Util.getAccountId(request));
         return context;
     }
-
-  
 }
