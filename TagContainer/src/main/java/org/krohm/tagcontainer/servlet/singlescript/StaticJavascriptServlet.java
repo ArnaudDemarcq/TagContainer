@@ -8,7 +8,6 @@ import java.io.StringWriter;
 import javax.servlet.http.HttpServletRequest;
 import org.krohm.tagcontainer.entities.ScriptEntity;
 import org.krohm.tagcontainer.servlet.AbstractJavascriptServlet;
-import org.krohm.tagcontainer.servlet.GetJavascriptServlet;
 
 /**
  *

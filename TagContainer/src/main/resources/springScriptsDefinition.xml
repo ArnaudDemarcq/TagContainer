@@ -18,12 +18,12 @@
        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        ">
 
-    <bean class="org.krohm.tagcontainer.servlet.GetJavascriptServlet" name="testServlet" >
+    <bean class="org.krohm.tagcontainer.servlet.singlescript.StaticJavascriptServlet" name="testServlet" >
         <property name="testScript">
             <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
                 <property name="content">
                     <value>
-                       alert('test from Spring');
+                       console.debug('test from Spring');
                     </value>
                 </property>
                   
