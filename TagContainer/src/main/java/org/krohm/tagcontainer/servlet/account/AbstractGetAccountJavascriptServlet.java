@@ -45,7 +45,7 @@ public abstract class AbstractGetAccountJavascriptServlet extends AbstractVeloci
     }
 
     @Override
-    protected final VelocityContext getVelocityContect(HttpServletRequest request) {
+    protected final VelocityContext getVelocityContext(HttpServletRequest request) {
         VelocityContext context = new VelocityContext();
         List<String> urlsToInclude = new ArrayList<String>();
         urlsToInclude.addAll(getUrlList(request));

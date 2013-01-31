@@ -22,11 +22,11 @@ public abstract class AbstractVelocityJavascriptServlet extends AbstractJavascri
 
     abstract protected Template getVelocityTemplate(HttpServletRequest request);
 
-    abstract protected VelocityContext getVelocityContect(HttpServletRequest request);
+    abstract protected VelocityContext getVelocityContext(HttpServletRequest request);
 
     @Override
     protected StringWriter getResponseWriter(HttpServletRequest request) throws Exception {
-        VelocityContext context = getVelocityContect(request);
+        VelocityContext context = getVelocityContext(request);
         StringWriter writer = new StringWriter();
         getVelocityTemplate(request).merge(context, writer);
         return writer;
