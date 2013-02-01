@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -24,7 +25,7 @@ public class ScriptEntity {
         DYNAMIC_SCRIPT;
     }
     // Script types
-    public static final long SCRIPT_TYPE_UNKNOWN = 1L;
+    public static final long SCRIPT_TYPE_UNKNOWN = 0L;
     public static final long SCRIPT_TYPE_URL = 1L;
     public static final long SCRIPT_TYPE_FIXED = 2L;
     public static final long SCRIPT_TYPE_TEMPLATE = 3L;
@@ -35,6 +36,7 @@ public class ScriptEntity {
     @Id
     private Long scriptId;
     private ScriptType scriptType = ScriptType.UNKNOWN;
+    @Lob
     private String content;
 
     public Long getScriptId() {
@@ -45,12 +47,19 @@ public class ScriptEntity {
         this.scriptId = scriptId;
     }
 
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public ScriptType getScriptType() {
+        return scriptType;
+    }
+
+    public void setScriptType(ScriptType scriptType) {
+        this.scriptType = scriptType;
     }
 }
