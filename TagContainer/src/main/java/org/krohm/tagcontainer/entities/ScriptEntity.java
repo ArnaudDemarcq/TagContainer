@@ -4,18 +4,26 @@
  */
 package org.krohm.tagcontainer.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Arnaud
  */
 @Entity
-public class ScriptEntity {
+/*
+@NamedQueries({
+    @NamedQuery(name = "ScriptEntity.findById",
+    query = "FROM UserEntity userEntity WHERE scriptEntity.scriptId = :script_id")
+})/**/
+public class ScriptEntity implements Serializable {
 
     public enum ScriptType {
 

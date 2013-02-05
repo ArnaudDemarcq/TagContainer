@@ -46,6 +46,8 @@
     </bean>
 
     <!-- TODO : DAOs -->
-
+    <bean id="accountEntityDao" class="org.krohm.tagcontainer.dao.AccountEntityDao" />
+    <bean id="scriptEntityDao" class="org.krohm.tagcontainer.dao.ScriptEntityDao" />
+    
 
 </beans>

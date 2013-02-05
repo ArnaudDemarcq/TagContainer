@@ -23,12 +23,12 @@
             <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
                 <property name="content">
                     <value>
-                       console.debug('test from Spring');
+                        console.debug('test from Spring');
                     </value>
                 </property>
-                  
             </bean>  
         </property>
+        <property name="scriptEntityDao" ref="scriptEntityDao" />
                
     </bean>
 
