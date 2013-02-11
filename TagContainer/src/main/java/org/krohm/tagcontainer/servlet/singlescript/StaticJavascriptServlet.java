@@ -22,18 +22,18 @@ public class StaticJavascriptServlet extends AbstractJavascriptServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GenericDao.class);
     private static ScriptEntityDao scriptEntityDao;
-    private static ScriptEntity testScript;
+    private static ScriptEntity defaultScript;
 
     public void setScriptEntityDao(ScriptEntityDao scriptEntityDao) {
-        this.scriptEntityDao = scriptEntityDao;
+        StaticJavascriptServlet.scriptEntityDao = scriptEntityDao;
     }
 
-    public ScriptEntity getTestScript() {
-        return testScript;
+    public ScriptEntity getDefaultScript() {
+        return defaultScript;
     }
 
-    public void setTestScript(ScriptEntity testScript) {
-        StaticJavascriptServlet.testScript = testScript;
+    public void setDefaultScript(ScriptEntity defaultScript) {
+        StaticJavascriptServlet.defaultScript = defaultScript;
     }
 
     @Override
@@ -51,6 +51,7 @@ public class StaticJavascriptServlet extends AbstractJavascriptServlet {
         if (testScriptEntity != null) {
             returnStringWriter.append(testScriptEntity.getContent());
         } else {
+            returnStringWriter.append(defaultScript.getContent());
             LOGGER.warn("Requested script for unknown id :<" + scriptId + ">, returning empty script");
         }
         return returnStringWriter;

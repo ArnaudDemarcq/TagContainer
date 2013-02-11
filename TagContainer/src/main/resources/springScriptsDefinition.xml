@@ -19,17 +19,16 @@
        ">
 
     <bean class="org.krohm.tagcontainer.servlet.singlescript.StaticJavascriptServlet" name="testServlet" >
-        <property name="testScript">
+        <property name="defaultScript">
             <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
                 <property name="content">
                     <value>
-                        console.debug('test from Spring');
+                        // non existing static script requested
                     </value>
                 </property>
             </bean>  
         </property>
         <property name="scriptEntityDao" ref="scriptEntityDao" />
-               
     </bean>
 
     <!--
