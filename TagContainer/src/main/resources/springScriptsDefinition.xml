@@ -18,12 +18,25 @@
        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        ">
 
-    <bean class="org.krohm.tagcontainer.servlet.singlescript.StaticJavascriptServlet" name="testServlet" >
+    <bean class="org.krohm.tagcontainer.servlet.singlescript.StaticJavascriptServlet" name="staticServletInjecter" >
         <property name="defaultScript">
             <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
                 <property name="content">
                     <value>
                         // non existing static script requested
+                    </value>
+                </property>
+            </bean>  
+        </property>
+        <property name="scriptEntityDao" ref="scriptEntityDao" />
+    </bean>
+    
+        <bean class="org.krohm.tagcontainer.servlet.singlescript.DynamicJavascriptServlet" name="dynamicServletInjecter" >
+        <property name="defaultScript">
+            <bean class="org.krohm.tagcontainer.entities.ScriptEntity">
+                <property name="content">
+                    <value>
+                        // non existing Dynamic script requested for id : $!{SCRIPT_ID}
                     </value>
                 </property>
             </bean>  

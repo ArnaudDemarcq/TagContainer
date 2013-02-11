@@ -4,21 +4,14 @@
  */
 package org.krohm.tagcontainer.servlet.account;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
-import org.krohm.tagcontainer.servlet.AbstractJavascriptServlet;
 import org.krohm.tagcontainer.servlet.AbstractVelocityJavascriptServlet;
 import org.krohm.tagcontainer.servlet.Util;
 import org.slf4j.Logger;
@@ -46,7 +39,7 @@ public abstract class AbstractGetAccountJavascriptServlet extends AbstractVeloci
 
     @Override
     protected final VelocityContext getVelocityContext(HttpServletRequest request) {
-        VelocityContext context = new VelocityContext();
+        VelocityContext context = super.getVelocityContext(request);
         List<String> urlsToInclude = new ArrayList<String>();
         urlsToInclude.addAll(getUrlList(request));
         context.put("urlsToInclude", urlsToInclude);

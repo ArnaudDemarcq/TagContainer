@@ -34,7 +34,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>GetJavascriptServlet</servlet-name>
-        <url-pattern>/GetJavascript/*</url-pattern>
+        <url-pattern>/GetJavascript/Static/*</url-pattern>
+    </servlet-mapping>
+      <!-- GetJavascriptServlet -->
+    <servlet>
+        <servlet-name>GetDynamicJavascriptServlet</servlet-name>
+        <servlet-class>org.krohm.tagcontainer.servlet.singlescript.DynamicJavascriptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetDynamicJavascriptServlet</servlet-name>
+        <url-pattern>/GetJavascript/Dynamic/*</url-pattern>
     </servlet-mapping>
     <!-- GetAccountJavascriptServlet -->
     <servlet>

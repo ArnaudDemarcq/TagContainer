@@ -18,9 +18,10 @@ public final class Util {
 
     public static String getAccountId(HttpServletRequest request) {
         String uriString = request.getRequestURI();
+        int baseSize = request.getContextPath().length() + request.getServletPath().length();
         String remainingString = null;
         try {
-            remainingString = uriString.split("/")[3];
+            remainingString = uriString.substring(baseSize).split("/")[1];
         } catch (Exception ex) {
             LOGGER.warn("unable to get accont id for uri : " + uriString);
         } finally {

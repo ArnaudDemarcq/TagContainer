@@ -5,10 +5,13 @@
 package org.krohm.tagcontainer.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -30,6 +33,8 @@ public class AccountEntity {
     private AccountStatus accountStatus = AccountStatus.IS_ENABLED;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date accountCreationDate = new Date();
+    @OneToMany
+    private Set<ScriptEntity> stockDailyRecords = new HashSet<ScriptEntity>(0);
 
     public Long getId() {
         return id;
@@ -61,5 +66,13 @@ public class AccountEntity {
 
     public void setAccountCreationDate(Date accountCreationDate) {
         this.accountCreationDate = accountCreationDate;
+    }
+
+    public Set<ScriptEntity> getStockDailyRecords() {
+        return stockDailyRecords;
+    }
+
+    public void setStockDailyRecords(Set<ScriptEntity> stockDailyRecords) {
+        this.stockDailyRecords = stockDailyRecords;
     }
 }

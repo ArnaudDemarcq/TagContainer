@@ -45,14 +45,14 @@ public class StaticJavascriptServlet extends AbstractJavascriptServlet {
         try {
             scriptId = Long.parseLong(scriptIdString);
         } catch (Exception ex) {
-            LOGGER.warn("Requested script for non numeric id :<" + scriptIdString + ">, defaulting to Long.MIN_VALUE");
+            LOGGER.warn("Requested Static script for non numeric id :<" + scriptIdString + ">, defaulting to Long.MIN_VALUE");
         }
         ScriptEntity testScriptEntity = scriptEntityDao.findById(scriptId);
         if (testScriptEntity != null) {
             returnStringWriter.append(testScriptEntity.getContent());
         } else {
+            LOGGER.warn("Requested Static script for unknown id :<" + scriptId + ">, returning empty script");
             returnStringWriter.append(defaultScript.getContent());
-            LOGGER.warn("Requested script for unknown id :<" + scriptId + ">, returning empty script");
         }
         return returnStringWriter;
     }
