@@ -51,6 +51,8 @@
         </bean>
     -->
 
+    <!-- THE WEB APPLICATION MUST BE DEFINED AS SPRING BEAN -->
+    <bean id="wicketApplication" class="org.krohm.tagcontainer.wicket.Application" />
 
 
 </beans>

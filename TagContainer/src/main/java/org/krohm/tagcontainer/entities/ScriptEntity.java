@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 /**
  *
@@ -19,10 +17,10 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 /*
-@NamedQueries({
-    @NamedQuery(name = "ScriptEntity.findById",
-    query = "FROM UserEntity userEntity WHERE scriptEntity.scriptId = :script_id")
-})/**/
+ @NamedQueries({
+ @NamedQuery(name = "ScriptEntity.findById",
+ query = "FROM UserEntity userEntity WHERE scriptEntity.scriptId = :script_id")
+ })/**/
 public class ScriptEntity implements Serializable {
 
     public enum ScriptType {
@@ -37,6 +35,9 @@ public class ScriptEntity implements Serializable {
     public static final long SCRIPT_TYPE_URL = 1L;
     public static final long SCRIPT_TYPE_FIXED = 2L;
     public static final long SCRIPT_TYPE_TEMPLATE = 3L;
+    // Script statuses
+    public static final long SCRIPT_STATUS_DISABLED = 0L;
+    public static final long SCRIPT_STATUS_ENABLED = 1L;
     // 
     // members    
     //
@@ -46,6 +47,8 @@ public class ScriptEntity implements Serializable {
     private ScriptType scriptType = ScriptType.UNKNOWN;
     @Lob
     private String content;
+    private Long accountId = null;
+    private Long scriptStatus = ScriptEntity.SCRIPT_STATUS_ENABLED;
 
     public Long getScriptId() {
         return scriptId;
@@ -69,5 +72,21 @@ public class ScriptEntity implements Serializable {
 
     public void setScriptType(ScriptType scriptType) {
         this.scriptType = scriptType;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Long getScriptStatus() {
+        return scriptStatus;
+    }
+
+    public void setScriptStatus(Long scriptStatus) {
+        this.scriptStatus = scriptStatus;
     }
 }
